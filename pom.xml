@@ -39,9 +39,9 @@
 	</build>
     <distributionManagement>
         <repository>
-            <id>moin-maven</id>
-            <name>moin-maven</name>
-            <url>http://13.210.150.223:8081/repository/moin-maven/</url>
+            <id>s3-maven</id>
+            <name>s3-maven</name>
+            <url>http://13.210.150.223:8081/repository/s3-maven/</url>
         </repository>
     </distributionManagement>
 </project>
