@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>helloworld</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>helloworld</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -39,9 +39,14 @@
 	</build>
     <distributionManagement>
         <repository>
-            <id>s3-maven</id>
-            <name>s3-maven</name>
-            <url>http://13.210.150.223:8081/repository/s3-maven/</url>
+            <id>maven-remote-store</id>
+            <name>maven-remote-store</name>
+            <url>http://3.26.115.146:8081/repository/maven-remote-store/</url>
         </repository>
+        <snapshotRepository>
+            <id>maven-local-store</id>
+            <name>maven-local-store</name>
+            <url>http://3.26.115.146:8081/repository/maven-local-store/</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>
