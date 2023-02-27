@@ -1,11 +1,6 @@
+
 pipeline {
     agent any
-
-    node {
-        def rootDir = pwd()
-        def gv = load "${rootDir}/script.groovy"
-    }
-    
     parameters { 
         string(name: 'VERSION', defaultValue: '', description: 'version to deploy')
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
@@ -15,7 +10,7 @@ pipeline {
     stages {
         stage('init') {
             steps {
-                gv = load 'script.groovy'
+                gv=load 'script.groovy'
             }
         }
 
