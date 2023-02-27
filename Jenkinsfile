@@ -1,8 +1,3 @@
-node {
-    checkout scm
-    def rootDir = pwd()
-    def gv = load "${rootDir}/script.groovy"
-}
 
 pipeline {
     agent any
@@ -14,7 +9,12 @@ pipeline {
     
     stages {
 
-
+        stage('init') {
+            steps {
+                gv=load 'script.groovy'
+            }
+        }
+        
         stage('build') {
             steps {
                 gv.buildApp()
