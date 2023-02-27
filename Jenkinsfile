@@ -1,7 +1,10 @@
-def gv
-
 pipeline {
     agent any
+
+    node {
+        def rootDir = pwd()
+        def gv = load "${rootDir}/script.groovy"
+    }
     
     parameters { 
         string(name: 'VERSION', defaultValue: '', description: 'version to deploy')
