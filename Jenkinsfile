@@ -11,12 +11,6 @@ pipeline {
     
     stages {
 
-        stage('checkout') {
-            steps {
-                git 'git@github.com:moinulhuq/helloworld.git'
-            }
-        }
-
         stage('init') {
             steps {
                 script {
