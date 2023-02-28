@@ -1,6 +1,8 @@
+def gv
 
 pipeline {
     agent any
+    
     parameters { 
         string(name: 'VERSION', defaultValue: '', description: 'version to deploy')
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
@@ -9,15 +11,25 @@ pipeline {
     
     stages {
 
-        stage('init') {
+        stage('checkout') {
             steps {
-                gv=load 'script.groovy'
+                git 'git@github.com:moinulhuq/helloworld.git'
             }
         }
-        
+
+        stage('init') {
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+        }
+
         stage('build') {
             steps {
-                gv.buildApp()
+                script {
+                    gv.buildApp()
+                }
             }
         }
 
