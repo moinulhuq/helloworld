@@ -4,9 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                mvn install
-		docker build -t helloworld:${BUILD_NUMBER} .
-		docker build -t helloworld:latest .
+                sh 'mvn install'
+		sh 'docker build -t helloworld:${BUILD_NUMBER} .'
+		sh 'docker build -t helloworld:latest .'
             }
         }
     }
