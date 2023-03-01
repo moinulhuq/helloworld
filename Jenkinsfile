@@ -2,9 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build') {
             steps {
-                echo 'Hello World'
+                mvn install
+		docker build -t helloworld:${BUILD_NUMBER} .
+		docker build -t helloworld:latest .
             }
         }
     }
