@@ -29,17 +29,17 @@ pipeline {
                 }
             }
         }
-        stage('Archive Artifacts'){
-            steps{
-                script{
-                    archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
-                }
-            }
-        }
         stage('Fingerprint'){
             steps{
                 script{
                     fingerprint '/target/*.jar'
+                }
+            }
+        }
+        stage('Archive Artifacts'){
+            steps{
+                script{
+                    archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
                 }
             }
         }
