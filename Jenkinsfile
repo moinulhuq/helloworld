@@ -19,20 +19,25 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u javatechie -p ${dockerhubpwd}'
+		    withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+		    sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
 		}
-                   sh 'docker push javatechie/devops-integration'
+		    sh 'docker tag helloworld:v1 moinulhuq/helloworld:${BUILD_NUMBER}'
+		    sh 'docker tag helloworld:v1 moinulhuq/helloworld:latest'
+                    sh 'docker push moinulhuq/helloworld:${BUILD_NUMBER}'
+                    sh 'docker push moinulhuq/helloworld:latest'
                 }
             }
         }
+/*
         stage('Deploy to k8s'){
             steps{
                 script{
                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
                 }
             }
-        }	    
+        }
+*/
     }
 }
 
