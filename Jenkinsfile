@@ -64,7 +64,15 @@ pipeline {
                 }
             }
         }
-
+        stage('Deploy Kubenetes'){
+            steps{
+                script{
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'FILE')]){
+                    sh 'kubectl apply -f /manifest/nginx-pod.yaml'
+		        }
+                }
+            }
+        }
 /*
         stage('Deploy to k8s'){
             steps{
