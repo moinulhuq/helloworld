@@ -32,7 +32,7 @@ pipeline {
         stage('Fingerprint'){
             steps{
                 script{
-                    fingerprint '/target/*.jar'
+                    fingerprint 'target/*.jar'
                 }
             }
         }
