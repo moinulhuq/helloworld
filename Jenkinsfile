@@ -22,8 +22,8 @@ pipeline {
 		    withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
 		    sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
 		}
-		    sh 'docker tag helloworld:v1 moinulhuq/helloworld:${BUILD_NUMBER}'
-		    sh 'docker tag helloworld:v1 moinulhuq/helloworld:latest'
+		    sh 'docker tag helloworld:${BUILD_NUMBER} moinulhuq/helloworld:${BUILD_NUMBER}'
+		    sh 'docker tag helloworld:${BUILD_NUMBER} moinulhuq/helloworld:latest'
                     sh 'docker push moinulhuq/helloworld:${BUILD_NUMBER}'
                     sh 'docker push moinulhuq/helloworld:latest'
                 }
