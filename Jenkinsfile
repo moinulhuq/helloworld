@@ -68,7 +68,7 @@ pipeline {
             steps{
                 script{
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'FILE')]){
-                    sh 'kubectl apply -f /manifest/nginx-pod.yaml'
+                    sh 'kubectl apply -f manifest/nginx-pod.yaml'
 		        }
                 }
             }
