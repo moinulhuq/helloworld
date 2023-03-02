@@ -43,6 +43,28 @@ pipeline {
                 }
             }
         }
+        stage('Upload to Nexsus'){
+            steps{
+                script{
+                    def mavenPomVersion = readMavenPom file: "pom.xml"
+                    nexusArtifactUploader artifacts: [
+                        [artifactId: 'helloworld', 
+                        classifier: '', 
+                        file: 'target/helloworld-0.0.2.jar', 
+                        type: 'jar'
+                        ]
+                    ], 
+                    credentialsId: 'Jenkins-Nexus', 
+                    groupId: 'com.example', 
+                    nexusUrl: '172.31.31.117:8081', 
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: 'helloworld-jenkins', 
+                    version: '0.0.2'
+                }
+            }
+        }
+
 /*
         stage('Deploy to k8s'){
             steps{
