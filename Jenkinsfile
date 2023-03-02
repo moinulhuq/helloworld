@@ -29,6 +29,13 @@ pipeline {
                 }
             }
         }
+        stage('Fingerprint'){
+            steps{
+                script{
+                    fingerprint '/target/*.jar'
+                }
+            }
+        }
 /*
         stage('Deploy to k8s'){
             steps{
@@ -40,4 +47,3 @@ pipeline {
 */
     }
 }
-
