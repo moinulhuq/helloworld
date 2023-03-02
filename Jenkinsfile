@@ -46,11 +46,11 @@ pipeline {
         stage('Upload to Nexsus'){
             steps{
                 script{
-                    def mavenPomVersion = readMavenPom file: "pom.xml"
+                    def mavenPom = readMavenPom file: "pom.xml"
                     nexusArtifactUploader artifacts: [
                         [artifactId: 'helloworld', 
                         classifier: '', 
-                        file: 'target/helloworld-0.0.2.jar', 
+                        file: "target/helloworld-${mavenPom.version}.jar", 
                         type: 'jar'
                         ]
                     ], 
@@ -60,7 +60,7 @@ pipeline {
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'helloworld-jenkins', 
-                    version: '0.0.2'
+                    version: "${mavenPom.version}"
                 }
             }
         }
