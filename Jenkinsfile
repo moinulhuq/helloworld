@@ -45,24 +45,7 @@ pipeline {
         }
         stage('Upload to Nexsus'){
             steps{
-                script{
-                    def mavenPom = readMavenPom file: "pom.xml"
-                    nexusArtifactUploader artifacts: [
-                        [
-                        artifactId: 'helloworld', 
-                        classifier: '', 
-                        file: "target/helloworld-${mavenPom.version}.jar", 
-                        type: 'jar'
-                        ]
-                    ], 
-                    credentialsId: 'Jenkins-Nexus', 
-                    groupId: 'com.example', 
-                    nexusUrl: '172.31.31.117:8081', 
-                    nexusVersion: 'nexus3', 
-                    protocol: 'http', 
-                    repository: 'helloworld-jenkins', 
-                    version: "${mavenPom.version}"
-                }
+		echo 'Upload to Nexsus'
             }
         }
         stage('Deploy Kubenetes'){
