@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class HelloworldApplication {
 
+	@Value("${sa.logic.api.url}")
+        private String saLogicApiUrl;
+
 //--------------- Extra --------------
     @RequestMapping("/")
     String home() {
-        return "Hello World!";
+        //return "Hello World!";
+	return saLogicApiUrl;    
     }
 //--------------- end --------------
 
